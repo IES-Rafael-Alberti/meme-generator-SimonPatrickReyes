@@ -1,6 +1,6 @@
 <?php
 /*CONECTA CON LA BDD*/
-require("connect.php");
+require("conecta.php");
 
 
 ?>
