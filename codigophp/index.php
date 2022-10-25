@@ -1,15 +1,10 @@
 <?php
-<<<<<<< HEAD
-require("login.php");
-?>
-=======
 /*CONECTA CON LA BDD*/
 require("conecta.php");
 
 
 ?>
 
->>>>>>> 701b0bcecbf291d11f8b5ac698bba3349044b601
 <!DOCTYPE html>
 <html lang="en">
 
