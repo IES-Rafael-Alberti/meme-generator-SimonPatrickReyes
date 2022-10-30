@@ -6,10 +6,10 @@ $url = 'https://api.imgflip.com/get_memes';
 $ch = curl_init();
 
 //set the url
-curl_setopt($ch,CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_URL, $url);
 
 //So that curl_exec returns the contents of the cURL; rather than echoing it
-curl_setopt($ch,CURLOPT_RETURNTRANSFER, true); 
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
 //receive url content 
 $result = curl_exec($ch);
@@ -18,9 +18,10 @@ $result = curl_exec($ch);
 $data = json_decode($result, true);
 
 //if success shows images
-if($data["success"]) {
+if ($data["success"]) {
     //iterates over memes array
-    foreach($data["data"]["memes"] as $meme) {
+
+    foreach ($data["data"]["memes"] as $meme) {
         //show meme image
         echo "<a href='create_meme.php?id=$meme[id]&cajas=$meme[box_count]&url=$meme[url]'> <img width='50px' src='" . $meme["url"] . "'> </a>";
     }
