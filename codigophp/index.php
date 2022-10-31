@@ -1,6 +1,7 @@
 <?php
 /*CONECTA CON LA BDD*/
 require("conecta.php");
+require("testlogin.php");
 
 
 ?>

@@ -20,6 +20,7 @@ echo "<img width=50 src='$_GET[url]'><br>";
         <?php
         for ($i = 1; $i <= $text_boxes; $i++) {
             print("<input type='text' name='text_meme$i'>");
+            print("<input type='color' name='color$i'>");
         }
         ?>
         <input type="submit" value="Crear Meme">

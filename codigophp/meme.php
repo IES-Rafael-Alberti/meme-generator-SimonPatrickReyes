@@ -1,4 +1,5 @@
 <?php
+require("conecta.php");
 //url for meme creation
 $url = 'https://api.imgflip.com/caption_image';
 
@@ -9,7 +10,7 @@ $boxes_array = array();
 
 
 for ($i = 1; $i <= $boxes; $i++) {
-    array_push($boxes_array, array("text" => $_POST["text_meme$i"], "color" => "#FFFFFF"));
+    array_push($boxes_array, array("text" => $_POST["text_meme$i"], "color" => $_POST["color$i"]));
 }
 
 $fields = array(
@@ -42,5 +43,20 @@ $data = json_decode($result, true);
 
 //if success show image
 if ($data["success"]) {
+    $foto= date("dmyHis").".jpeg";
+
     echo "<img src='" . $data["data"]["url"] . "'>";
+    $sql = "INSERT INTO created_memes (route, id_user) values (:route, :id_user)";
+
+    $data = array("route" => "memes/$foto",
+                   "id_user" => $_SESSION["id"]
+                  );
+    // comprueba que la sentencia SQL preparada está bien 
+    $stmt = $conn->prepare($sql);
+    // ejecuta la sentencia usando los valores
+    if($stmt->execute($data) != 1) {
+        print("No se pudo guardar el meme :(");
+        exit(0);
+    }
+    file_put_contents("memes/$foto", file_get_contents($data["data"]["url"]));
 }
