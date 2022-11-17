@@ -1,5 +1,24 @@
-<?php
+<?php session_start();
 require("conecta.php");
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página principal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+    <a href="index.php">Pagina Principal</a>
+</body>
+
+</html>
+
+<?php
 //url for meme creation
 $url = 'https://api.imgflip.com/caption_image';
 
@@ -48,15 +67,15 @@ if ($data["success"]) {
     echo "<img src='" . $data["data"]["url"] . "'>";
     $sql = "INSERT INTO created_memes (route, id_user) values (:route, :id_user)";
 
-    $data = array("route" => "memes/$foto",
+    $data_new = array("route" => "memes/$foto",
                    "id_user" => $_SESSION["id"]
                   );
     // comprueba que la sentencia SQL preparada está bien 
     $stmt = $conn->prepare($sql);
     // ejecuta la sentencia usando los valores
-    if($stmt->execute($data) != 1) {
+    if($stmt->execute($data_new) != 1) {
         print("No se pudo guardar el meme :(");
         exit(0);
     }
-    file_put_contents("memes/$foto", file_get_contents($data["data"]["url"]));
+    file_put_contents("memes/$foto",file_get_contents($data["data"]["url"]));
 }

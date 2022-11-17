@@ -28,10 +28,10 @@ require("testlogin.php");
     while ($meme = $memes->fetchObject()) {
         print("<tr>");
         print("<td>");
-        print("<a href='deletememe.php?id=" . $user["id"] . "'><i class='fa-solid fa-trash-can'></i></a>");
+        print("<a href='delete_meme.php?route=".$meme->route."'><i class='fa-solid fa-trash-can'></i></a>");
         print("</td>");
         print("<td>");
-        print($meme->name);
+        print("<img src='".$meme->route."'>");
         print("</td>");
         print("</tr>");
     }
