@@ -38,6 +38,7 @@ require("testlogin.php");
 
     ?>
     <a href="memelist.php">List of memes</a>
+    <a href="logout.php">Close session</a>
 </body>
 
 </html>
